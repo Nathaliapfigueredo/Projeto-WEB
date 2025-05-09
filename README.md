@@ -1,11 +1,11 @@
 # Inteli - Instituto de Tecnologia e Liderança 
 
 <p align="center">
-<a href= "https://www.inteli.edu.br/"><img src="/assets/inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
+<a href= "https://www.inteli.edu.br/"><img src="/assets/inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0" width="50%"></a>
 </p>
 
 
-# Nome do projeto
+# OrientaJovem
 
 
 *Desenvolvedora: Nathália Pires de Figueredo*
@@ -47,13 +47,11 @@ npm start
 
 ## 🗃 Histórico de versões
 
-* 0.5.0 - XX/XX/2024
-    * 
-* 0.4.0 - XX/XX/2024
-    * 
-* 0.3.0 - XX/XX/2024
-    * 
-* 0.2.0 - XX/XX/2024
-    * 
-* 0.1.0 - 9/05/2024
-    *
+* 0.3.0 - 09/05/2025
+    * Desenvolvimento do modelo físico
+    * Implementação do modelo físico e migrações
+    *  Atualização do WAD: introdução e seção 2
+* 0.2.0 - 08/05/2025
+    * Estruturação do modelo lógico
+* 0.1.0 - 9/05/2025
+    * Estruturação das pastas
