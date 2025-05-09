@@ -3,7 +3,8 @@ CREATE TABLE accounts (
     nome VARCHAR(255),
     email VARCHAR(255),
     password VARCHAR(255),
-    user_type VARCHAR(100)
+    user_type VARCHAR(100),
+    entidade_tipo VARCHAR(100)
 );
 
 CREATE TABLE mentor (
@@ -12,8 +13,7 @@ CREATE TABLE mentor (
     disponibilidade INT,
     bio TEXT,
     lattes_link VARCHAR(255),
-    accounts_id INT,
-    FOREIGN KEY (accounts_id) REFERENCES accounts(id)
+    FOREIGN KEY (id) REFERENCES accounts(id)
 );
 
 CREATE TABLE mentee (
@@ -22,14 +22,7 @@ CREATE TABLE mentee (
     interesses VARCHAR(255),
     bio TEXT,
     lattes_link VARCHAR(255),
-    accounts_id INT,
-    FOREIGN KEY (accounts_id) REFERENCES accounts(id)
-);
-
-CREATE TABLE topico (
-    id INT PRIMARY KEY,
-    nome VARCHAR(255),
-    descriacao TEXT
+    FOREIGN KEY (id) REFERENCES accounts(id)
 );
 
 CREATE TABLE sessao (
@@ -37,10 +30,9 @@ CREATE TABLE sessao (
     proposta_agendamento VARCHAR(255),
     status VARCHAR(100),
     external_link VARCHAR(255),
+    topico VARCHAR(255),
     mentor_id INT,
     mentee_id INT,
-    topico_id INT,
     FOREIGN KEY (mentor_id) REFERENCES mentor(id),
-    FOREIGN KEY (mentee_id) REFERENCES mentee(id),
-    FOREIGN KEY (topico_id) REFERENCES topico(id)
+    FOREIGN KEY (mentee_id) REFERENCES mentee(id)
 );
