@@ -1,18 +1,20 @@
 const fs = require('fs');
 const path = require('path');
-const db = require('./config/db');
+const db = require('../config/db');
 
 // Ordena os arquivos por nome (timestamp)
-const migrationsDir = path.join(__dirname, 'scripts');
-const files = fs.readdirSync(migrationsDir).sort();
+const migrationsDir = path.join(__dirname); // ou o diretório correto onde estão os arquivos SQL
+const files = fs.readdirSync(migrationsDir)
+  .filter(file => file.endsWith('.sql')) // só arquivos .sql
+  .sort();
 
 (async () => {
   try {
     for (const file of files) {
       const filePath = path.join(migrationsDir, file);
-      const sql = fs.readFileSync(filePath, 'utf8');
+      const sql = fs.readFileSync(filePath, 'utf8'); // Lê o conteúdo SQL do arquivo
       console.log(`🔄 Executando: ${file}`);
-      await db.query(sql);
+      await db.query(sql); // Executa o SQL no banco
     }
     console.log('✅ Todas as migrações foram aplicadas com sucesso!');
     process.exit(0);
