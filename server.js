@@ -5,6 +5,8 @@ const cors = require('cors');
 // Importar os arquivos de rota
 const accountsRoutes = require('./Routes/accountsRoute.js');
 const alunoRoutes = require('./Routes/alunoRoute.js');
+const orientadorRoutes = require('./Routes/orientadorRoute.js');
+
 
 const app = express();
 const port = 3000;
@@ -16,6 +18,7 @@ app.use(express.json());
 // Usar as rotas com prefixos diferentes
 app.use('/api/accounts', accountsRoutes);  
 app.use('/api/aluno', alunoRoutes);        
+app.use('/api/orientador', orientadorRoutes);
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);

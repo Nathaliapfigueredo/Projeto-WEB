@@ -1,3 +1,5 @@
+#Accounts---------------------------
+
 ### Busca todos os cadastros
 GET http://localhost:3000/api/accounts
 
@@ -36,11 +38,14 @@ Content-Type: application/json
   "senha": "123456"
 }
 
+
 #Aluno---------------------------
+
+
 ### Busca todos os alunos
 GET http://localhost:3000/api/aluno
 
-### Cria novo cadastro de conta 
+### Cria novo cadastro de aluno 
 POST http://localhost:3000/api/aluno
 Content-Type: application/json
 
@@ -70,4 +75,46 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/aluno/c2f104e0-4a2d-4a37-ab9c-2c67b22df698
 Content-Type: application/json
 
+
+
+
+#Orientador---------------------------
+
+
+### Busca todos os orientadores
+GET http://localhost:3000/api/orientador  
+
+
+### Cria novo cadastro de orientador 
+POST http://localhost:3000/api/orientador
+Content-Type: application/json
+
+{
+  "expertise": "Ciencia da computação, com foco em machine learning",
+  "disponibilidade_data":"2025-06-01",
+  "disponibilidade_time":"11:00",
+  "bio":"30 anos, Pós graduado em ciência da computação pela USP, com 10 anos de experiência com dados, IA e machine learning",
+  "lattes_link": "https://lattes.cnpq.br/8070339584568015",
+  "retorno_agendamento": "Aprovado",
+  "id_account": "3235b37e-ba38-43b9-bb7a-6445ae9e4972"
+}
+
+
+### Edita um orientador específico
+PUT http://localhost:3000/api/orientador/86134783-eb4b-432c-bdcd-1259e77fde76
+Content-Type: application/json
+
+{
+  "expertise": "Educação e tecnologia",
+  "disponibilidade_data":"2025-06-01",
+  "disponibilidade_time":"11:00",
+  "bio":"30 anos, Pós graduado em informática na educação pela USP, com 5 anos estudando metodologias de ensino",
+  "lattes_link": "https://lattes.cnpq.br/8070339584568015",
+  "retorno_agendamento": "Aprovado",
+  "id_account": "3235b37e-ba38-43b9-bb7a-6445ae9e4972"
+}
+
+###Deleta um orientador específico
+DELETE http://localhost:3000/api/orientador/f67dcaff-0623-4c88-ae03-deff5ae9aba5
+Content-Type: application/json
 
