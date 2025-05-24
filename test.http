@@ -118,3 +118,51 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/orientador/f67dcaff-0623-4c88-ae03-deff5ae9aba5
 Content-Type: application/json
 
+
+
+#Sessão---------------------------
+
+
+### Busca todas as sessões
+GET http://localhost:3000/api/sessao  
+
+
+### Cria nova sessão 
+POST http://localhost:3000/api/sessao
+Content-Type: application/json
+
+{
+  "agendamento_data": "2025-06-01",
+  "agendamento_hora":"11:00",
+  "status":"Aprovada",
+  "external_link":"google.com",
+  "topico": "Revisão de Literatura",
+  "id_orientador": "86134783-eb4b-432c-bdcd-1259e77fde76",
+  "id_aluno": "da7d37bb-8261-4b3e-bdd3-b69ecee987ad"
+}
+
+
+### Busca uma sessão específica
+GET http://localhost:3000/api/sessao/e51c0398-4569-4ce4-9dca-8d6775425da3
+
+
+### Edita uma sessão específica
+PUT http://localhost:3000/api/sessao/e51c0398-4569-4ce4-9dca-8d6775425da3
+Content-Type: application/json
+
+{
+  "agendamento_data": "2025-06-01",
+  "agendamento_hora":"11:00",
+  "status":"Será necessário reagendar",
+  "external_link":"google.com",
+  "topico": "Revisão de Literatura",
+  "id_orientador": "86134783-eb4b-432c-bdcd-1259e77fde76",
+  "id_aluno": "da7d37bb-8261-4b3e-bdd3-b69ecee987ad"
+}
+
+
+
+###Deleta uma sessão específica
+DELETE http://localhost:3000/api/sessao/44e1eb8d-5282-4f83-b10d-39584d6f5721
+Content-Type: application/json
+

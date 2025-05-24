@@ -6,6 +6,7 @@ const cors = require('cors');
 const accountsRoutes = require('./Routes/accountsRoute.js');
 const alunoRoutes = require('./Routes/alunoRoute.js');
 const orientadorRoutes = require('./Routes/orientadorRoute.js');
+const sessaoRoutes = require('./Routes/sessaoRoute.js');
 
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use('/api/accounts', accountsRoutes);  
 app.use('/api/aluno', alunoRoutes);        
 app.use('/api/orientador', orientadorRoutes);
+app.use('/api/sessao', sessaoRoutes);
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
