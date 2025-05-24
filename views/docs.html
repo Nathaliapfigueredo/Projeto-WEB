@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Documentação da API</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      max-width: 800px;
+      margin: 2rem auto;
+      line-height: 1.6
+    }
+
+    code {
+      background: #f4f4f4;
+      padding: 2px 4px;
+      border-radius: 3px
+    }
+
+    h2 {
+      margin-top: 2.2rem
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Mini API Node com SQLite</h1>
+
+  <p>Esta aplicação expõe quatro conjuntos de endpoints REST em <code>/api/accounts</code>,  <code>/api/aluno</code>, <code>/api/orientador</code> e <code>/api/sessao</code>. Todos
+    aceitam e devolvem JSON.</p>
+
+  <h2>1. Account</h2>
+  <ul>
+    <li><strong>GET /api/accounts</strong> – lista todos os cadastros .</li>
+    <li><strong>POST /api/accounts</strong> – cria um cadastro.<br>
+      Exemplo de corpo: <code>{"name":"Ana","email":"ana@exemplo.com"}</code></li>
+    <li><strong>GET /api/accounts/:id</strong> – lista um cadastro específico.</li>
+    <li><strong>PUT /api/accounts/:id</strong> – atualiza um cadastro específico.</li>
+    <li><strong>DELETE /api/accounts/:id</strong> – remove um cadastro específico.</li>
+    <li><strong>POST /api/login</strong> – acessa um novo login.</li>
+</ul>
+
+  <h2>2. Aluno</h2>
+  <ul>
+    <li><strong>GET /api/aluno</strong> – lista todos os alunos.</li>
+    <li><strong>POST /api/aluno</strong> – cria perfil de aluno.<br>
+      Exemplo: <code>{"user_id":1,"product":"Livro","price":49.90}</code></li>
+    <li><strong>GET /api/aluno/:id</strong> – lista um aluno específico.</li>
+    <li><strong>PUT /api/aluno/:id</strong> – atualiza perfil de um aluno.</li>
+    <li><strong>DELETE /api/aluno/:id</strong> – remove um aluno.</li>
+  </ul>
+
+    <h2>3. Orientador</h2>  
+    <ul>
+        <li><strong>GET /api/orientador</strong> – lista todos os orientadores.</li>
+        <li><strong>POST /api/orientador</strong> – cria perfil de orientador.<br>
+            Exemplo: <code>{"user_id":1,"product":"Livro","price":49.90}</code></li>
+        <li><strong>GET /api/orientador/:id</strong> – lista um orientador específico.</li>
+        <li><strong>PUT /api/orientador/:id</strong> – atualiza perfil de um orientador.</li>
+        <li><strong>DELETE /api/orientador/:id</strong> – remove um orientador.</li>    
+    </ul>
+
+    <h2>4. Sessão</h2>
+    <ul>
+        <li><strong>GET /api/sessao</strong> – lista todas as sessões.</li>
+        <li><strong>POST /api/sessao</strong> – cria uma sessão.<br>
+            Exemplo: <code>{"aluno_id":1,"orientador_id":2,"data":"2023-10-01"}</code></li>
+        <li><strong>GET /api/sessao/:id</strong> – lista uma sessão específica.</li>
+        <li><strong>PUT /api/sessao/:id</strong> – atualiza uma sessão.</li>
+        <li><strong>DELETE /api/sessao/:id</strong> – remove uma sessão.</li>
+    </ul>
+
+
+  <h2>Exemplos de uso via <em>curl</em></h2>
+  <pre>
+curl -X POST http://localhost:3000/api/accounts \
+     -H "Content-Type: application/json" \
+     -d '{"name":"Ana","email":"ana@exemplo.com"}'
+
+  </pre>
+</body>
+
+</html>

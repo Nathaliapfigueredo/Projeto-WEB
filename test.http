@@ -14,6 +14,11 @@ Content-Type: application/json
   "senha": "123456"
 }
 
+### Busca um cadastro específico
+GET http://localhost:3000/api/accounts/3235b37e-ba38-43b9-bb7a-6445ae9e4972
+Content-Type: application/json
+
+
 ### Edita um cadastro específico
 PUT http://localhost:3000/api/accounts/8a73667e-3f78-4aad-868c-64db34e7f3ad
 Content-Type: application/json
@@ -29,7 +34,7 @@ DELETE http://localhost:3000/api/accounts/51a5c8ae-384a-401c-8dd0-a82999b175e5
 Content-Type: application/json
 
 
-### Cria novo login 
+### Acessa novo login 
 POST http://localhost:3000/api/login
 Content-Type: application/json
 
@@ -56,6 +61,11 @@ Content-Type: application/json
   "lattes_link":"https://lattes.cnpq.br/8070339584568015",
   "id_account": "8540a6b7-e932-4188-804f-aa3d0ba11439"
 }
+
+
+### Busca um aluno específico
+GET http://localhost:3000/api/aluno/da7d37bb-8261-4b3e-bdd3-b69ecee987ad
+Content-Type: application/json
 
 
 ### Edita um aluno específico
@@ -99,6 +109,9 @@ Content-Type: application/json
   "id_account": "3235b37e-ba38-43b9-bb7a-6445ae9e4972"
 }
 
+### Busca um orientadores específico
+GET http://localhost:3000/api/orientador/86134783-eb4b-432c-bdcd-1259e77fde76
+Content-Type: application/json
 
 ### Edita um orientador específico
 PUT http://localhost:3000/api/orientador/86134783-eb4b-432c-bdcd-1259e77fde76

@@ -33,6 +33,22 @@ exports.listarOrientador = async (req, res) => {
   }
 };
 
+exports.buscarOrientador = async (req, res) => {
+  const id = req.params.id;
+  const query = 'SELECT * FROM orientador WHERE id = $1';
+  const values = [id];
+
+  try {
+    const result = await pool.query(query, values);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'Orientador não encontrada' });
+    }
+    res.status(200).json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 // Editar orientador
 exports.editarOrientador = async (req, res) => {
   const id = req.params.id;
