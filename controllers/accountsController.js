@@ -2,7 +2,7 @@ const pool = require('../config/db');
 
 // cria a conta (registro)
 exports.cadastrarAccount = async (req, res) => {
-  console.log("req.body recebido:", req.body); // 🐞 debug
+  console.log("req.body recebido:", req.body); // debug
   const { nome, email, senha } = req.body; 
   
   const query = `

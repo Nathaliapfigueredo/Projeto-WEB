@@ -38,33 +38,36 @@ Content-Type: application/json
 
 #Aluno---------------------------
 ### Busca todos os alunos
-GET http://localhost:3000/aluno
+GET http://localhost:3000/api/aluno
 
 ### Cria novo cadastro de conta 
 POST http://localhost:3000/api/aluno
 Content-Type: application/json
 
 {
-  "objetivo": "Começar uma iniciação científica",
-  "interesse":"Informatica na educação, principalmente no estudo da metodologia de aprendizagem criativa",
-  "bio":"Jovens de 20 anos, estudante do primerio ano do Instituto de Tecnologia e Liderança",
-  "lattes_link":"https://lattes.cnpq.br/8070339584568015"
+  "objetivo": "Começar uma pósgradução",
+  "interesses":"Informatica na educação",
+  "bio":"Jovens de 24 anos",
+  "lattes_link":"https://lattes.cnpq.br/8070339584568015",
+  "id_account": "8540a6b7-e932-4188-804f-aa3d0ba11439"
 }
 
 
 ### Edita um aluno específico
-PUT http://localhost:3000/api/aluno/
+PUT http://localhost:3000/api/aluno/da7d37bb-8261-4b3e-bdd3-b69ecee987ad
 Content-Type: application/json
 
 {
   "objetivo": "Começar uma iniciação científica",
-  "interesse":"Tecnologias inclusivas",
+  "interesses":"Tecnologias inclusivas",
   "bio":"Jovens de 20, estudante do primerio ano do Instituto de Tecnologia e Liderança",
-  "lattes_link":"https://lattes.cnpq.br/8070339584568015"
+  "lattes_link":"https://lattes.cnpq.br/8070339584568015",
+  "id_account": "1e031fcb-e889-441e-8da1-b961761cdf8f"
+
 }
 
 ###Deleta um aluno específico
-DELETE http://localhost:3000/api/aluno/
+DELETE http://localhost:3000/api/aluno/c2f104e0-4a2d-4a37-ab9c-2c67b22df698
 Content-Type: application/json
 
 

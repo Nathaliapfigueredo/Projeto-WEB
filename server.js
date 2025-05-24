@@ -1,10 +1,10 @@
-// server.js
 const express = require('express');
 const pool = require('./config/db'); 
 const cors = require('cors');
-const routes = require('./Routes/accountsRoute.js');
 
-
+// Importar os arquivos de rota
+const accountsRoutes = require('./Routes/accountsRoute.js');
+const alunoRoutes = require('./Routes/alunoRoute.js');
 
 const app = express();
 const port = 3000;
@@ -13,9 +13,9 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Usando as rotas definidas
-app.use('/api', routes);
-
+// Usar as rotas com prefixos diferentes
+app.use('/api/accounts', accountsRoutes);  
+app.use('/api/aluno', alunoRoutes);        
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
@@ -30,6 +30,3 @@ app.get('/', async (req, res) => {
     res.status(500).send('Erro ao conectar com o banco.');
   }
 });
-
-
-

@@ -1,16 +1,13 @@
-// routes/index.js
 const express = require('express');
 const router = express.Router();
 const accountsController = require('../controllers/accountsController');
 
+router.get('/', accountsController.listarCadastros);
+router.post('/', accountsController.cadastrarAccount);
+router.put('/:id', accountsController.editarCadastro);
+router.delete('/:id', accountsController.excluirAccount);
 
-// Rotas para o CRUD de accounts
-router.get('/accounts', accountsController.listarCadastros);
-router.post('/accounts', accountsController.cadastrarAccount);
-router.put('/accounts/:id', accountsController.editarCadastro);
-router.delete('/accounts/:id', accountsController.excluirAccount);
-
-// Rota para login
+// Adicione outras rotas específicas, tipo login
 router.post('/login', accountsController.loginAccount);
 
 module.exports = router;
