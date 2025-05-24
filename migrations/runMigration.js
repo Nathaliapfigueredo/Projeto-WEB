@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path');
-const db = require('../config/db');
+const db = require('../config/db.js');
 
 // Ordena os arquivos por nome (timestamp)
 const migrationsDir = path.join(__dirname); // ou o diretório correto onde estão os arquivos SQL
 const files = fs.readdirSync(migrationsDir)
-  .filter(file => file.endsWith('.sql')) // só arquivos .sql
+  .filter(file => file.endsWith('202505221425_init.sql'))
   .sort();
 
 (async () => {

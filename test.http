@@ -1,1 +1,70 @@
-Get http://localhost:3000/
+### Busca todos os cadastros
+GET http://localhost:3000/api/accounts
+
+
+### Cria novo cadastro de conta 
+POST http://localhost:3000/api/accounts
+Content-Type: application/json
+
+{
+  "nome": "Usuario Teste",
+  "email": "usuario@example.com",
+  "senha": "123456"
+}
+
+### Edita um cadastro específico
+PUT http://localhost:3000/api/accounts/8a73667e-3f78-4aad-868c-64db34e7f3ad
+Content-Type: application/json
+
+{
+  "nome": "Victorya",
+  "email": "victorya@gmail.com",
+  "senha": "novaSenha1234"
+}
+
+###Deleta um cadastro específico
+DELETE http://localhost:3000/api/accounts/51a5c8ae-384a-401c-8dd0-a82999b175e5
+Content-Type: application/json
+
+
+### Cria novo login 
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+  "email": "usuario@example.com",
+  "senha": "123456"
+}
+
+#Aluno---------------------------
+### Busca todos os alunos
+GET http://localhost:3000/aluno
+
+### Cria novo cadastro de conta 
+POST http://localhost:3000/api/aluno
+Content-Type: application/json
+
+{
+  "objetivo": "Começar uma iniciação científica",
+  "interesse":"Informatica na educação, principalmente no estudo da metodologia de aprendizagem criativa",
+  "bio":"Jovens de 20 anos, estudante do primerio ano do Instituto de Tecnologia e Liderança",
+  "lattes_link":"https://lattes.cnpq.br/8070339584568015"
+}
+
+
+### Edita um aluno específico
+PUT http://localhost:3000/api/aluno/
+Content-Type: application/json
+
+{
+  "objetivo": "Começar uma iniciação científica",
+  "interesse":"Tecnologias inclusivas",
+  "bio":"Jovens de 20, estudante do primerio ano do Instituto de Tecnologia e Liderança",
+  "lattes_link":"https://lattes.cnpq.br/8070339584568015"
+}
+
+###Deleta um aluno específico
+DELETE http://localhost:3000/api/aluno/
+Content-Type: application/json
+
+
