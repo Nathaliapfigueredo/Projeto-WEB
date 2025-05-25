@@ -59,7 +59,7 @@ Content-Type: application/json
   "interesses":"Informatica na educação",
   "bio":"Jovens de 24 anos",
   "lattes_link":"https://lattes.cnpq.br/8070339584568015",
-  "id_account": "8540a6b7-e932-4188-804f-aa3d0ba11439"
+  "id_account": "12e9a42e-c7d3-4561-80be-ee2e4d2e5f13"
 }
 
 
@@ -82,7 +82,7 @@ Content-Type: application/json
 }
 
 ###Deleta um aluno específico
-DELETE http://localhost:3000/api/aluno/c2f104e0-4a2d-4a37-ab9c-2c67b22df698
+DELETE http://localhost:3000/api/aluno/73472721-4ddf-4f47-bfb3-dcad0d13547d
 Content-Type: application/json
 
 
@@ -105,7 +105,7 @@ Content-Type: application/json
   "disponibilidade_time":"11:00",
   "bio":"30 anos, Pós graduado em ciência da computação pela USP, com 10 anos de experiência com dados, IA e machine learning",
   "lattes_link": "https://lattes.cnpq.br/8070339584568015",
-  "retorno_agendamento": "Aprovado",
+  "retorno_agendamento": "True",
   "id_account": "3235b37e-ba38-43b9-bb7a-6445ae9e4972"
 }
 
@@ -114,7 +114,7 @@ GET http://localhost:3000/api/orientador/86134783-eb4b-432c-bdcd-1259e77fde76
 Content-Type: application/json
 
 ### Edita um orientador específico
-PUT http://localhost:3000/api/orientador/86134783-eb4b-432c-bdcd-1259e77fde76
+PUT http://localhost:3000/api/orientador/62e1c99d-58dc-4b46-8b3a-8231dd193baf
 Content-Type: application/json
 
 {
@@ -123,12 +123,12 @@ Content-Type: application/json
   "disponibilidade_time":"11:00",
   "bio":"30 anos, Pós graduado em informática na educação pela USP, com 5 anos estudando metodologias de ensino",
   "lattes_link": "https://lattes.cnpq.br/8070339584568015",
-  "retorno_agendamento": "Aprovado",
+  "retorno_agendamento": "True",
   "id_account": "3235b37e-ba38-43b9-bb7a-6445ae9e4972"
 }
 
 ###Deleta um orientador específico
-DELETE http://localhost:3000/api/orientador/f67dcaff-0623-4c88-ae03-deff5ae9aba5
+DELETE http://localhost:3000/api/orientador/62e1c99d-58dc-4b46-8b3a-8231dd193baf
 Content-Type: application/json
 
 
@@ -147,8 +147,8 @@ Content-Type: application/json
 {
   "agendamento_data": "2025-06-01",
   "agendamento_hora":"11:00",
-  "status":"Aprovada",
-  "external_link":"google.com",
+  "status":"agendada",
+  "external_link":"https://meet.google.com/dkt-bdec-fda",
   "topico": "Revisão de Literatura",
   "id_orientador": "86134783-eb4b-432c-bdcd-1259e77fde76",
   "id_aluno": "da7d37bb-8261-4b3e-bdd3-b69ecee987ad"
@@ -166,8 +166,8 @@ Content-Type: application/json
 {
   "agendamento_data": "2025-06-01",
   "agendamento_hora":"11:00",
-  "status":"Será necessário reagendar",
-  "external_link":"google.com",
+  "status":"cancelada",
+  "external_link":"https://meet.google.com/dkt-bdec-fda",
   "topico": "Revisão de Literatura",
   "id_orientador": "86134783-eb4b-432c-bdcd-1259e77fde76",
   "id_aluno": "da7d37bb-8261-4b3e-bdd3-b69ecee987ad"
