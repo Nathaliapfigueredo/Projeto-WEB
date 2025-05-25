@@ -7,9 +7,9 @@ exports.createAluno = (objetivo, interesses, bio, lattes_link, id_account) => {
   return pool.query(query, [objetivo, interesses, bio, lattes_link, id_account]);
 };
 
-exports.getAllAlunos = () => pool.query('SELECT objetivo, interesses, bio, lattes_link, id_account FROM aluno');
+exports.getAllAlunos = () => pool.query('SELECT id, objetivo, interesses, bio, lattes_link, id_account FROM aluno');
 
-exports.getAlunoById = (id) => pool.query('SELECT objetivo, interesses, bio, lattes_link, id_account FROM aluno WHERE id = $1', [id]);
+exports.getAlunoById = (id) => pool.query('SELECT id, objetivo, interesses, bio, lattes_link, id_account FROM aluno WHERE id = $1', [id]);
 
 exports.updateAluno = (id, objetivo, interesses, bio, lattes_link) => {
   const query = `

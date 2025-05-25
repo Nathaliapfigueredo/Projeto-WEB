@@ -1,8 +1,8 @@
 // repositories/accountsRepository.js
 const pool = require('../config/db');
 
-exports.createAccount = (nome, email, senha) => {
-  const query = `INSERT INTO accounts (nome, email, senha) VALUES ($1, $2, $3, $4) RETURNING *`;
+exports.createAccount = (nome, email, senha, user_type) => {
+  const query = `INSERT INTO accounts (nome, email, senha, user_type) VALUES ($1, $2, $3, $4) RETURNING *`;
   return pool.query(query, [nome, email, senha, user_type]);
 };
 
@@ -11,9 +11,9 @@ exports.findAccountByEmail = (email) => {
   return pool.query(query, [email]);
 };
 
-exports.getAllAccounts = () => pool.query('SELECT nome, email, senha, user_type FROM accounts');
+exports.getAllAccounts = () => pool.query('SELECT id, nome, email, senha, user_type FROM accounts');
 
-exports.findAccountById = (id) => pool.query('SELECT nome, email, senha, user_type FROM accounts WHERE id = $1', [id]);
+exports.findAccountById = (id) => pool.query('SELECT id, nome, email, senha, user_type FROM accounts WHERE id = $1', [id]);
 
 exports.updateAccount = (id, nome, email, senha, user_type) => {
   const query = `

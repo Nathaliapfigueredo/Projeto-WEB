@@ -13,12 +13,12 @@ exports.create = async (dados) => {
 }
 
 exports.findAll = async () => {
-    const result = await pool.query('SELECT agendamento_data, agendamento_hora, status, external_link, topico, id_orientador, id_aluno FROM sessao');
+    const result = await pool.query('SELECT id, agendamento_data, agendamento_hora, status, external_link, topico, id_orientador, id_aluno FROM sessao');
     return result.rows;
 };
 
 exports.findById = async (id) => {
-  const result = await pool.query('SELECT agendamento_data, agendamento_hora, status, external_link, topico, id_orientador, id_aluno FROM sessao WHERE id = $1', [id]);
+  const result = await pool.query('SELECT id, agendamento_data, agendamento_hora, status, external_link, topico, id_orientador, id_aluno FROM sessao WHERE id = $1', [id]);
   return result.rows[0];
 };
 

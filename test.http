@@ -8,10 +8,12 @@ GET http://localhost:3000/api/accounts
 POST http://localhost:3000/api/accounts
 Content-Type: application/json
 
+
 {
-  "nome": "Usuario Teste",
-  "email": "usuario@example.com",
-  "senha": "123456"
+  "nome": "Claudio",
+  "email": "claudio@email.com",
+  "senha": "123456",
+  "user_type": "aluno"  
 }
 
 ### Busca um cadastro específico
@@ -20,17 +22,19 @@ Content-Type: application/json
 
 
 ### Edita um cadastro específico
-PUT http://localhost:3000/api/accounts/8a73667e-3f78-4aad-868c-64db34e7f3ad
+PUT http://localhost:3000/api/accounts/b84dd17c-3bc2-4825-8a10-f1da599302eb
 Content-Type: application/json
 
 {
-  "nome": "Victorya",
-  "email": "victorya@gmail.com",
-  "senha": "novaSenha1234"
+  "nome": "Claudio",
+  "email": "claudio@email.com",
+  "senha": "123456claudio",
+  "user_type": "aluno" 
+
 }
 
 ###Deleta um cadastro específico
-DELETE http://localhost:3000/api/accounts/51a5c8ae-384a-401c-8dd0-a82999b175e5
+DELETE http://localhost:3000/api/accounts/b84dd17c-3bc2-4825-8a10-f1da599302eb
 Content-Type: application/json
 
 
@@ -69,7 +73,7 @@ Content-Type: application/json
 
 
 ### Edita um aluno específico
-PUT http://localhost:3000/api/aluno/da7d37bb-8261-4b3e-bdd3-b69ecee987ad
+PUT http://localhost:3000/api/aluno/53a29e99-7c05-4b7f-8893-9ff71e0a4b2b
 Content-Type: application/json
 
 {
@@ -82,7 +86,7 @@ Content-Type: application/json
 }
 
 ###Deleta um aluno específico
-DELETE http://localhost:3000/api/aluno/73472721-4ddf-4f47-bfb3-dcad0d13547d
+DELETE http://localhost:3000/api/aluno/53a29e99-7c05-4b7f-8893-9ff71e0a4b2b
 Content-Type: application/json
 
 
@@ -110,11 +114,11 @@ Content-Type: application/json
 }
 
 ### Busca um orientadores específico
-GET http://localhost:3000/api/orientador/86134783-eb4b-432c-bdcd-1259e77fde76
+GET http://localhost:3000/api/orientador/7a1609fc-c5f6-4e6f-8c1d-c957d40df24f
 Content-Type: application/json
 
 ### Edita um orientador específico
-PUT http://localhost:3000/api/orientador/62e1c99d-58dc-4b46-8b3a-8231dd193baf
+PUT http://localhost:3000/api/orientador/7a1609fc-c5f6-4e6f-8c1d-c957d40df24f
 Content-Type: application/json
 
 {
@@ -128,7 +132,7 @@ Content-Type: application/json
 }
 
 ###Deleta um orientador específico
-DELETE http://localhost:3000/api/orientador/62e1c99d-58dc-4b46-8b3a-8231dd193baf
+DELETE http://localhost:3000/api/orientador/7a1609fc-c5f6-4e6f-8c1d-c957d40df24f
 Content-Type: application/json
 
 

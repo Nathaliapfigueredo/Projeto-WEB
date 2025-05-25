@@ -3,7 +3,6 @@ const router = express.Router();
 const accountsController = require('../controllers/accountsController');
 
 
-// Adicione outras rotas específicas, tipo login
 router.post('/login', accountsController.loginAccount);
 
 router.get('/', accountsController.listarCadastros);
