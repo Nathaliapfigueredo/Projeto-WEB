@@ -28,8 +28,8 @@ Ao projetar um banco de dados eficiente e funcional, é essencial compreender os
 
 #### Entidades relacionadas: 
 - Accounts;
-- Orientador;
 - Aluno;
+- Orientador;
 - Sessão 
 
 #### Funcionalidades do Sistema:
@@ -63,9 +63,102 @@ Dessa forma, estruturamos uma tabela  accounts com atributos essenciais de cadas
 
 
 #### Modelo Físico:
-Para o modelo físico foi traduda a linguagem desenvolvida no Mermaid para o modelo lógico para SQL, o qual adicionamos no arquivo SQL da pasta migrations.
+Para o modelo físico foi traduzida a linguagem desenvolvida no Mermaid para o modelo lógico para SQL, o qual adicionamos no arquivo SQL da pasta migrations.
 [Aqui está o código SQL que cria a estrutura de um banco de dados.](migrations/202505091120_init.sql)
 
 
 
 
+### 2.2. Models
+Nesta seção, são descritos os models (esquemas de validação) utilizados no sistema web, desenvolvidos com a biblioteca Joi para garantir a integridade e consistência dos dados recebidos pela aplicação.Cada model representa uma entidade do sistema, como usuários, alunos, orientadores e sessões,  e define as regras de validação para os  dados, como tipos, obrigatoriedade e formatos esperados.
+
+#### Accounts
+Esse modelo representa os dados básicos de um usuário do sistema, independentemente de ele ser um aluno ou orientador. 
+
+_Campos:_ (todos obrigatórios)
+- nome (string): Nome do usuário com no mínimo 3 e máximo de 50 caracteres. 
+- email (string): E-mail válido do usuário. 
+- senha (string) :   Senha de no mínimo 6 caracteres. 
+- user_type (string): Tipo de usuário, se é um orintador ou aluno. 
+
+#### Aluno
+Model que representa um perfil de aluno, vinculado a uma conta base (id_account).
+
+_Campos:_ (todos obrigatórios)
+- objetivo(string): objetivo do aluno com a plataforma.
+- interesses(string): interesses acadêmicos ou científicos.
+- bio(string): biografia do aluno
+- lattes_link(string): link para o currículo lattes . Deve ser uma URL válida.
+- id_account(string): identificador da conta associada.
+
+Representao perfil completo de um estudante buscando orientação.
+
+#### Orientador
+Model que representa um perfil de orientador disponível para sesões.
+
+_Campos:_ 
+- expertise (string): objetivo do aluno com a plataforma. Obrigatório!
+- disponibilidade_data(string): interesses acadêmicos ou científicos. Obrigatório!
+- disponibilidade_time (string): biografia do aluno. Obrigatório!
+- bio (string): biografia do orientador. Opcional!
+- retorno_agendamento(boolean): se a orientador retirnará ou não sobre agendamento. Obrigatório!
+- lattes_link(string): link para o currículo lattes . Deve ser uma URL válida. Opcional!
+- id_account(string): identificador da conta associada. Obrigatório!
+
+Representao perfil completo de um orientador oferecendo orientação.
+
+#### Sessão
+Model que representa uma sessão de orientação entre aluno e um orientador.
+
+_Campos:_ 
+- agendamento_data(string): Data da Sessão. Obrigatório!
+- agendamento_hora(string): Hora da Sessão. Obrigatório!
+- Status (string): Status da sessão, se está agendada, cancelada ou realizada. Obrigatório!
+- external_link(string): Link para a sessaõ com uma URL. Opcional!
+- topico(string): Tópico a ser tratado na sessão. Obrigatório!
+- id_orientador (string UUID): ID do orientador. Obrigatório!
+- id_aluno (string UUID): ID do aluno.Obrigatório!
+
+Essa registra e controla os encontros entre alunos e orientadores.
+
+### 2.3. WebAPI e endpoints 
+Esta seção expõe quatro conjuntos de endpoints REST em /api/accounts, /api/aluno, /api/orientador e /api/sessao. Todos aceitam e devolvem JSON. As APIs foram projetadas para permitir a integração e o uso eficiente do sistema por meio de requisições padronizadas, facilitando operações como criação de contas, cadastro de alunos e orientadores, agendamento de sessões e consulta de dados.
+
+Todas as requisições são validadas utilizando os models definidos com Joi, garantindo a segurança e consistência das informações trocadas.
+
+1. Account
+- GET /api/accounts – lista todos os cadastros .
+- POST /api/accounts – cria um cadastro.
+- Exemplo de corpo: {"name":"Ana","email":"ana@exemplo.com"}
+- GET /api/accounts/:id – lista um cadastro específico.
+- PUT /api/accounts/:id – atualiza um cadastro específico.
+- DELETE /api/accounts/:id – remove um cadastro específico.
+- POST /api/login – acessa um novo login.
+2. Aluno
+- GET /api/aluno – lista todos os alunos.
+- POST /api/aluno – cria perfil de aluno.
+- Exemplo: {"user_id":1,"product":"Livro","price":49.90}
+- GET /api/aluno/:id – lista um aluno específico.
+- PUT /api/aluno/:id – atualiza perfil de um aluno.
+- DELETE /api/aluno/:id – remove um aluno.
+3. Orientador
+- GET /api/orientador – lista todos os orientadores.
+- POST /api/orientador – cria perfil de orientador.
+- Exemplo: {"user_id":1,"product":"Livro","price":49.90}
+- GET /api/orientador/:id – lista um orientador específico.
+- PUT /api/orientador/:id – atualiza perfil de um orientador.
+- DELETE /api/orientador/:id – remove um orientador.
+4. Sessão
+- GET /api/sessao – lista todas as sessões.
+- POST /api/sessao – cria uma sessão.
+- Exemplo: {"aluno_id":1,"orientador_id":2,"data":"2023-10-01"}
+- GET /api/sessao/:id – lista uma sessão específica.
+- PUT /api/sessao/:id – atualiza uma sessão.
+- DELETE /api/sessao/:id – remove uma sessão.
+
+
+Exemplos de uso via curl:
+
+curl -X POST http://localhost:3000/api/accounts \
+     -H "Content-Type: application/json" \
+     -d '{"name":"Ana","email":"ana@exemplo.com"}'
