@@ -67,7 +67,11 @@ module.exports = pool;
 
 
 ## 🗃 Histórico de versões
-
+* 0.4.0 - 25/05-2025
+    * Criação das APIs
+    * Implementação da estrutura MVC
+    * Implementação de m FRONTEND
+    * Atualização do WAD: Seção sobre Model e APIs
 * 0.3.0 - 09/05/2025
     * Desenvolvimento do modelo físico
     * Implementação do modelo físico e migrações
