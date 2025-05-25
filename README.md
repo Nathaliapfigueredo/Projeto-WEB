@@ -29,21 +29,42 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
 ## 💻 Configuração para desenvolvimento e execução do código
 
-1. Baixar e instalar o node.js: [https://nodejs.org/pt-br/](https://nodejs.org/pt-br/) (versão 16.15.1 LTS)
-2. Clone o repositório em questão.
-3. No modo administrador, abra o "prompt de comando" ou o "terminal" e, após, abra a pasta "src/backend" no diretório raiz do repositório clonado e digite o segundo comando:
+### Pré-requisitos
+Antes de começar, certifique-se de ter instalado em sua máquina:
+- Node.js (versão 14 ou superior)
+- PostgreSQL
+- Um gerenciador de pacotes: npm (já vem com o Node.js)
 
-```sh
-npm install
+### Instalação
+- Clone o repositório:
+`git clone https://github.com/seu-usuario/Projeto-WEB.git`
+`cd Projeto-WEB`
+- Instale as dependências:
+`npm install`
+- Configure o banco de dados:
+Crie um banco de dados PostgreSQL e uma tabela para cada entidade.
+
+- Crie o arquivo de configuração do banco:
+No diretório config/, crie o arquivo db.js com a conexão com o PostgreSQL. 
+
+```js
+// config/db.js
+const { Pool } = require('pg');
+const pool = new Pool({
+  user: 'seu_usuario',
+  host: 'localhost',
+  database: 'seu_banco',
+  password: 'sua_senha',
+  port: 5432,
+});
+module.exports = pool;
 ```
 
-Isso instalará todas as dependências definidas no arquivo <b>package.json</b> que são necessárias para rodar o projeto. Agora o projeto já está pronto para ser modificado. Caso ainda deseje iniciar a aplicação, digite o comando abaixo no terminal:
+- Executando a aplicação
+`npm start`
 
-```sh
-npm start
-```
-5. Agora você pode acessar a aplicação através do link http://localhost:1234/
-6. O servidor está online.
+
+
 
 ## 🗃 Histórico de versões
 
