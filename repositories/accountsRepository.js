@@ -2,25 +2,26 @@
 const pool = require('../config/db');
 
 exports.createAccount = (nome, email, senha) => {
-  const query = `INSERT INTO accounts (nome, email, senha) VALUES ($1, $2, $3) RETURNING *`;
-  return pool.query(query, [nome, email, senha]);
+  const query = `INSERT INTO accounts (nome, email, senha) VALUES ($1, $2, $3, $4) RETURNING *`;
+  return pool.query(query, [nome, email, senha, user_type]);
 };
 
 exports.findAccountByEmail = (email) => {
-  const query = `SELECT * FROM accounts WHERE email = $1`;
+  const query = `SELECT nome, email, senha, user_type FROM accounts WHERE email = $1`;
   return pool.query(query, [email]);
 };
 
-exports.getAllAccounts = () => pool.query('SELECT * FROM accounts');
+exports.getAllAccounts = () => pool.query('SELECT nome, email, senha, user_type FROM accounts');
 
-exports.findAccountById = (id) => pool.query('SELECT * FROM accounts WHERE id = $1', [id]);
+exports.findAccountById = (id) => pool.query('SELECT nome, email, senha, user_type FROM accounts WHERE id = $1', [id]);
 
-exports.updateAccount = (id, nome, email, senha) => {
+exports.updateAccount = (id, nome, email, senha, user_type) => {
   const query = `
     UPDATE accounts 
-    SET nome = $1, email = $2, senha = $3 
-    WHERE id = $4 RETURNING *`;
-  return pool.query(query, [nome, email, senha, id]);
+    SET nome = $1, email = $2, senha = $3, user_type = $4
+    WHERE id = $5 RETURNING *`;
+  
+  return pool.query(query, [nome, email, senha, user_type, id]);
 };
 
 exports.deleteAccount = (id) => {

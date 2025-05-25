@@ -14,12 +14,12 @@ exports.create = async (dados) => {
 };
 
 exports.findAll = async () => {
-  const result = await pool.query('SELECT * FROM orientador');
+  const result = await pool.query('SELECT expertise, disponibilidade_data, disponibilidade_time, bio, lattes_link, retorno_agendamento, id_account FROM orientador');
   return result.rows;
 };
 
 exports.findById = async (id) => {
-  const result = await pool.query('SELECT * FROM orientador WHERE id = $1', [id]);
+  const result = await pool.query('SELECT expertise, disponibilidade_data, disponibilidade_time, bio, lattes_link, retorno_agendamento, id_account FROM orientador WHERE id = $1', [id]);
   return result.rows[0];
 };
 
