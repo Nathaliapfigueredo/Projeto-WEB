@@ -15,6 +15,10 @@ const port = 3000;
 // Middlewares
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+const path = require('path');
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views')); 
 
 // Usar as rotas com prefixos diferentes
 app.use('/api/accounts', accountsRoutes);  

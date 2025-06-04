@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+</head>
+<body>
+    <h1>Cadastro de Dados do Aluno</h1>
+
+    <form action="/api/aluno" method="POST">
+        <input type="hidden" name="id_account" value="<%= id_account %>" />
+
+        <label>Objetivo:</label>
+        <input type="text" name="objetivo" required /><br/>
+
+        <label>Interesses:</label>
+        <input type="text" name="interesses" required /><br/>
+
+        <label>Bio:</label>
+        <textarea name="bio" required></textarea><br/>
+
+        <label>Link do Lattes:</label>
+        <input type="url" name="lattes_link" required /><br/>
+
+        <button type="submit">Cadastrar Dados do Aluno</button>
+    </form>
+
+</body>
+</html>

@@ -1,6 +1,9 @@
 const alunoRepository = require('../repositories/alunoRepository');
 
 exports.cadastrarAluno = async ({ objetivo, interesses, bio, lattes_link, id_account }) => {
+  console.log("[AlunoService] Dados recebidos:", { objetivo, interesses, bio, lattes_link, id_account });
+  if (!id_account) throw new Error("ID do usuário não informado");
+  
   const result = await alunoRepository.createAluno(objetivo, interesses, bio, lattes_link, id_account);
   return result.rows[0];
 };

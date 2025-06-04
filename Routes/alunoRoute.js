@@ -3,7 +3,8 @@ const router = express.Router();
 
 const alunoController = require('../controllers/alunoController');
 
-// Use rotas relativas ao path definido no server.js (/api/aluno)
+router.get('/form', alunoController.formAluno);
+router.get('/orientadores', alunoController.listaOrientadores);
 router.get('/', alunoController.listarAluno);
 router.post('/', alunoController.cadastrarAluno);
 router.get('/:id', alunoController.buscarAluno);

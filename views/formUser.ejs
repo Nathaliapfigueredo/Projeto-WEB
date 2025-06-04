@@ -1,0 +1,22 @@
+<h1>Cadastro de Usuário</h1>
+
+<form action="/api/accounts" method="POST">
+  <label>Nome:</label>
+  <input type="text" name="nome" required /><br/>
+
+  <label>Email:</label>
+  <input type="email" name="email" required /><br/>
+
+  <label>Senha:</label>
+  <input type="password" name="senha" required /><br/>
+
+  <label>Tipo de Usuário:</label>
+  <select name="user_type" required>
+    <option value="">Selecione...</option>
+    <option value="aluno">Aluno</option>
+    <option value="orientador">Orientador</option>
+  </select><br/>
+
+  <button type="submit">Cadastrar</button>
+</form>
+
