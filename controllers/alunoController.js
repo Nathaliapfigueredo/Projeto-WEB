@@ -1,5 +1,6 @@
 const alunoService = require('../services/alunoService');
 const accountsService = require('../services/accountsService');
+const alunoRepository = require('../repositories/alunoRepository');
 const { alunoSchema } = require('../models/alunoModel');
 
 
@@ -12,15 +13,8 @@ exports.formAluno = (req, res) => {
 
 exports.listaOrientadores = async (req, res) => {
   try {
-    const allAccounts = await accountsService.listarCadastros();
-    const orientadores = allAccounts.filter(user => user.user_type === 'orientador');
-
-    console.log("Lista de orientadores renderizada com", orientadores.length, "orientadores")
-
-    const id_aluno = req.query.idAluno; 
-
-    res.render('listaOrientadores', { orientadores, id_aluno });
-
+    const orientadores = await alunoRepository.findAll(); // ou orientadorRepository.findAll()
+    res.render('listaOrientadores', { orientadores });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

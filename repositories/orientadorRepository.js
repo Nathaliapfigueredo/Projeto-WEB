@@ -13,43 +13,6 @@ exports.create = async (dados) => {
   return result.rows[0];
 };
 
-exports.findAll = async () => {
-  console.log("findAll foi chamada")
-  const query = `
-    SELECT 
-      o.id,
-      a.nome,
-      a.email,
-      o.expertise,
-      o.disponibilidade_data,
-      o.disponibilidade_time,
-      o.bio,
-      o.lattes_link,
-      o.retorno_agendamento,
-      o.id_account
-    FROM orientador o
-    INNER JOIN accounts a ON o.id_account = a.id
-    WHERE a.user_type = 'orientador';
-  `;
-
-  const result = await pool.query(query);
-  console.log(result.rows);
-  const orientadores_dto = result.rows.map(row => ({
-    id: row.id,
-    nome: row.nome,
-    email: row.email,
-    expertise: row.expertise,
-    disponibilidade_data: row.disponibilidade_data,
-    disponibilidade_time: row.disponibilidade_time,
-    bio: row.bio,
-    lattes_link: row.lattes_link,
-    retorno_agendamento: row.retorno_agendamento,
-    id_account: row.id_account
-  }));
-  console.log("orientadores_dto:", orientadores_dto);
-  return orientadores_dto;
-};
-
 
 
 exports.findById = async (id) => {

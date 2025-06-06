@@ -2,6 +2,8 @@ const express = require('express');
 const pool = require('./config/db'); 
 const cors = require('cors');
 
+console.log('Iniciando servidor...');
+
 const accountsRoutes = require('./Routes/accountsRoute.js');
 const alunoRoutes = require('./Routes/alunoRoute.js');
 const orientadorRoutes = require('./Routes/orientadorRoute.js');

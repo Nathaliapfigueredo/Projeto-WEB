@@ -5,7 +5,6 @@ const alunoController = require('../controllers/alunoController');
 
 router.get('/form', alunoController.formAluno);
 router.get('/listaOrientadores', alunoController.listaOrientadores);
-router.post('/selecionar-Orientador', alunoController.selecionarOrientador);
 
 router.get('/', alunoController.listarAluno);
 router.post('/', alunoController.cadastrarAluno);

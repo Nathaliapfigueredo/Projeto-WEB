@@ -11,24 +11,6 @@ exports.formOrientador = (req, res) => {
   res.render('formOrientador', { id_account });
 }
 
-
-exports.mostrarLista = async (req, res) => {
-  console.log("Entrou na função mostrarLista");
-  try {
-    const orientadores = await orientadorRepository.findAll();
-    console.log(`Total de orientadores: ${orientadores.length}`);
-    // console.log("Orientadores retornados pelo serviço:");
-    // console.log(orientadores);
-    res.render('listaOrientadores', { orientadores });
-
-    const id_aluno = req.query.id_aluno;
-
-  } catch (err) {
-    res.status(500).send('Erro ao carregar lista de orientadores');
-  }
-};
-
-
 exports.getAll = async (req, res) => {
   try {
     console.log("Entrou na função getAll");
