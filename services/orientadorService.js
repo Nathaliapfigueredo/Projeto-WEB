@@ -1,8 +1,21 @@
 const repository = require('../repositories/orientadorRepository');
 
-exports.cadastrarOrientador = async (dados) => {
-  return await repository.create(dados);
+
+exports.cadastrarOrientador = async ({ expertise, disponibilidade_data, disponibilidade_time, bio, lattes_link, retorno_agendamento, id_account }) => {
+  console.log("[OrientadorService] Dados recebidos:", {expertise, disponibilidade_data, disponibilidade_time, bio, lattes_link, retorno_agendamento, id_account });
+  if (!id_account) throw new Error("ID do usuário não informado");
+  const result = await repository.create({
+    expertise,
+    disponibilidade_data,
+    disponibilidade_time,
+    bio,
+    lattes_link,
+    retorno_agendamento,
+    id_account
+  });
+  return result;
 };
+
 
 exports.listarOrientadores = async () => {
   return await repository.findAll();

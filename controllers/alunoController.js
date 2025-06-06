@@ -9,28 +9,44 @@ exports.formAluno = (req, res) => {
   res.render('formAluno', { id_account });
 };
 
+
 exports.listaOrientadores = async (req, res) => {
   try {
-    console.log("Lista de orientadores renderizada com", orientadores.length, "orientadores");
     const allAccounts = await accountsService.listarCadastros();
     const orientadores = allAccounts.filter(user => user.user_type === 'orientador');
 
-    res.render('listaOrientadores', { orientadores });
+    console.log("Lista de orientadores renderizada com", orientadores.length, "orientadores")
+
+    const id_aluno = req.query.idAluno; 
+
+    res.render('listaOrientadores', { orientadores, id_aluno });
 
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 
+exports.selecionarOrientador = async (req, res) => {
+  const { id_aluno, id_orientador } = req.body;
+  try {
+    await alunoService.vincularOrientador(id_aluno, id_orientador);
+    res.redirect('/aluno/dashboard'); 
+  } catch (error) {
+    res.status(500).send('Erro ao selecionar orientador');
+  }
+};
+
+
 exports.cadastrarAluno = async (req, res) => {
   const { error } = alunoSchema.validate(req.body);
-  if (error) return res.status(400).json({ error: error.details[0].message });
+  if (error) return res.status(400).send(error.details[0].message); 
 
   try {
     const aluno = await alunoService.cadastrarAluno(req.body);
-    res.status(201).json(aluno);
+    res.redirect(`aluno/listaOrientadores?idAluno=${aluno.id}`);
+
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).send('Erro ao cadastrar aluno');
   }
 };
 

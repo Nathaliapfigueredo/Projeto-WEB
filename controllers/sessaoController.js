@@ -1,20 +1,47 @@
 const service = require('../services/sessaoService');
 const { sessaoSchema } = require('../models/sessaoModel');
 
-// Cadastrar sessão
+ 
+const orientadorRepository = require('../repositories/orientadorRepository');
+
+exports.renderizarPaginaAgendamento = async (req, res) => {
+  const id_orientador = req.params.id;
+  const id_aluno = req.query.id_aluno ;
+  console.log("[renderizarPaginaAgendamento] ID do orientador:", id_orientador);
+
+
+  try {
+    const orientador = await orientadorRepository.findById(id_orientador);
+
+    if (!orientador) {
+      return res.status(404).send('Orientador não encontrado');
+    }
+    console.log("Orientador encontrado:", orientador);
+    res.render('agendamento', {
+      orientador,
+      aluno: { id: id_aluno }
+    });
+  } catch (err) {
+    res.status(500).send('Erro ao carregar a página de agendamento');
+  }
+};
+
+
+
 exports.cadastrarSessao = async (req, res) => {
   const { error } = sessaoSchema.validate(req.body);
   if (error) {
-    return res.status(400).json({ error: error.details[0].message });
+    return res.status(400).send(`Erro de validação: ${error.details[0].message}`);
   }
 
   try {
-    const sessao = await service.cadastrarSessao(req.body);
-    res.status(201).json(sessao);
+    await service.cadastrarSessao(req.body);
+    res.redirect('/sessao/sucesso'); // ou outra página de confirmação
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).send(`Erro ao salvar sessão: ${err.message}`);
   }
 };
+
 
 // Listar sessões
 exports.listarSessao = async (_req, res) => {

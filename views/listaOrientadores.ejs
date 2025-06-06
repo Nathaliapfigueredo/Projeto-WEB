@@ -3,52 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <title>Lista de Orientadores</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <style>
     body {
-      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
     }
-    .card {
-      border: 1px solid #ccc;
+
+    h1 {
+      padding-top: 40px;
+      padding-bottom: 30px;
+      color: #171440;
+    }
+
+    .custom-card {
+      border-left: 6px solid #171440;
       border-radius: 8px;
-      padding: 16px;
-      margin-bottom: 16px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .card h2 {
-      margin-top: 0;
+
+    .custom-card h2 {
+      color: #171440;
     }
+
     .select-button {
-      background-color: #007bff;
+      background-color: #ecac40;
       color: white;
-      padding: 8px 16px;
       border: none;
-      border-radius: 4px;
-      cursor: pointer;
+      border-radius: 20px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
     }
+
     .select-button:hover {
-      background-color: #0056b3;
+      background-color: #e39a1c;
+    }
+
+    footer {
+      background-color: #171440;
+      border-radius: 0 0 20px 20px;
     }
   </style>
 </head>
+
 <body>
+  <%- include('partials/header') %>
 
-  <h1>Escolha seu Orientador</h1>
+  <div class="container my-5">
+    <h1 class="text-center mb-4">Escolha seu Orientador</h1>
 
-  <% if (orientadores.length > 0) { %>
-    <% orientadores.forEach(orientador => { %>
-      <div class="card">
-        <h2><%= orientador.nome %></h2>
-        <p><strong>Email:</strong> <%= orientador.email %></p>
-        <p><strong>Bio:</strong> <%= orientador.bio || "Bio não disponível" %></p>
+    <% console.log(orientadores); %>
+    <% if (orientadores.length > 0) { %>
+      <div class="row justify-content-center">
+        <% orientadores.forEach((orientador, index) => { %>
+          <div class="col-12 col-md-6 mb-4">
+            <div class="card custom-card p-4">
+              <h2><%= orientador.nome %></h2>
+              <p><strong>Email:</strong> <%= orientador.email %></p>
+              <p><strong>Especialidade:</strong> <%= orientador.expertise %></p>
 
-        <form action="/api/aluno/vincular-orientador" method="POST">
-          <input type="hidden" name="id_orientador" value="<%= orientador.id %>">
-          <button type="submit" class="select-button">Selecionar este orientador</button>
-        </form>
+              <button class="btn select-button mt-2" 
+                      type="button" 
+                      data-bs-toggle="collapse" 
+                      data-bs-target="#info<%= index %>" 
+                      aria-expanded="false" 
+                      aria-controls="info<%= index %>">
+                Saber mais
+              </button>
+
+              <div class="collapse mt-3" id="info<%= index %>">
+                <div class="card card-body">
+                  <p><strong>Currículo Lattes:</strong> <%= orientador.lattes_link || 'Não informado' %></p>
+                  <p><strong>Biografia:</strong> <%= orientador.bio || 'Sem informações adicionais.' %></p>
+                </div>
+              </div>
+              <div>
+      
+                <button class="btn select-button mt-2" 
+                  onclick="window.location.href='/agendar/<%= orientador.id %>'">
+                  Agendar Orientação
+                </button>
+
+              </div>
+
+            </div>
+          </div>
+        <% }) %>
       </div>
-    <% }) %>
-  <% } else { %>
-    <p>Não há orientadores cadastrados no momento.</p>
-  <% } %>
+    <% } else { %>
+      <p class="text-center">Não há orientadores cadastrados no momento.</p>
+    <% } %>
+  </div>
 
+  <footer class="text-white text-center py-3">
+    <div class="container">
+      <%- include('partials/footer') %>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

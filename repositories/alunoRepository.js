@@ -1,5 +1,16 @@
 const pool = require('../config/db');
 
+exports.atualizarOrientador = async (id_aluno, id_orientador) => {
+  const query = `
+    UPDATE alunos
+    SET orientador_id = $1
+    WHERE id = $2
+    RETURNING *;
+  `;
+  const values = [id_orientador, id_aluno];
+  return await pool.query(query, values);
+};
+
 exports.createAluno = (objetivo, interesses, bio, lattes_link, id_account) => {
   const query = `
     INSERT INTO aluno (objetivo, interesses, bio, lattes_link, id_account)

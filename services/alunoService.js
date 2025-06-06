@@ -1,5 +1,13 @@
 const alunoRepository = require('../repositories/alunoRepository');
 
+
+exports.vincularOrientador = async (id_aluno, id_orientador) => {
+  const result = await alunoRepository.atualizarOrientador(id_aluno, id_orientador);
+  if (result.rows.length === 0) throw new Error('Aluno não encontrado');
+  return result.rows[0];
+};
+
+
 exports.cadastrarAluno = async ({ objetivo, interesses, bio, lattes_link, id_account }) => {
   console.log("[AlunoService] Dados recebidos:", { objetivo, interesses, bio, lattes_link, id_account });
   if (!id_account) throw new Error("ID do usuário não informado");

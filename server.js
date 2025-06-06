@@ -2,11 +2,12 @@ const express = require('express');
 const pool = require('./config/db'); 
 const cors = require('cors');
 
-// Importar os arquivos de rota
 const accountsRoutes = require('./Routes/accountsRoute.js');
 const alunoRoutes = require('./Routes/alunoRoute.js');
 const orientadorRoutes = require('./Routes/orientadorRoute.js');
 const sessaoRoutes = require('./Routes/sessaoRoute.js');
+const sessaoController = require('./controllers/sessaoController');
+
 
 
 const app = express();
@@ -20,15 +21,23 @@ const path = require('path');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); 
 
+app.get('/agendar/:id', sessaoController.renderizarPaginaAgendamento);
+
 // Usar as rotas com prefixos diferentes
+
 app.use('/api/accounts', accountsRoutes);  
 app.use('/api/aluno', alunoRoutes);        
 app.use('/api/orientador', orientadorRoutes);
 app.use('/api/sessao', sessaoRoutes);
 
+
+
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
+
+
+
 
 app.get('/', async (req, res) => {
   try {

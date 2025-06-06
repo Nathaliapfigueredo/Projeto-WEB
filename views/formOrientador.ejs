@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Orientador</title>
+</head>
+<body>
+    <h1>Cadastro de Dados do Orientador</h1>
+
+    <form action="/api/orientador" method="POST">
+        <input type="hidden" name="id_account" value="<%= id_account %>" />
+
+        <label>Expertise:</label>
+        <input type="text" name="expertise" required /><br/>
+
+        <label>Disponibilidade (Data):</label>
+        <input type="date" name="disponibilidade_data" required /><br/>
+
+        <label>Disponibilidade (Horário):</label>
+        <input type="time" name="disponibilidade_time" required /><br/>
+
+        <label>Bio:</label>
+        <textarea type="text" name="bio" required></textarea><br/>
+
+        <label>Link do Lattes:</label>
+        <input type="url" name="lattes_link" /><br/>
+
+        <label>Aceita Agendamentos?</label>
+        <select name="retorno_agendamento" required>
+            <option value="true">Sim</option>
+            <option value="false">Não</option>
+        </select><br/><br/>
+
+        <button type="submit">Finalizar Cadastro</button>
+    </form>
+
+</body>
+</html>

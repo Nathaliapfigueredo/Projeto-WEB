@@ -1,20 +1,61 @@
 const service = require('../services/orientadorService');
+const accountsService = require('../services/accountsService');
+orientadorRepository = require('../repositories/orientadorRepository');
+
 const { orientadorSchema } = require('../models/orientadorModel');
 
-// Cadastrar orientador
+
+exports.formOrientador = (req, res) => {
+  const id_account = req.query.id;
+  console.log("[formOrientador] ID recebido no query:", id_account);
+  res.render('formOrientador', { id_account });
+}
+
+
+exports.mostrarLista = async (req, res) => {
+  console.log("Entrou na função mostrarLista");
+  try {
+    const orientadores = await orientadorRepository.findAll();
+    console.log(`Total de orientadores: ${orientadores.length}`);
+    // console.log("Orientadores retornados pelo serviço:");
+    // console.log(orientadores);
+    res.render('listaOrientadores', { orientadores });
+
+    const id_aluno = req.query.id_aluno;
+
+  } catch (err) {
+    res.status(500).send('Erro ao carregar lista de orientadores');
+  }
+};
+
+
+exports.getAll = async (req, res) => {
+  try {
+    console.log("Entrou na função getAll");
+    const orientadores = await orientadorRepository.findAll();
+    res.json(orientadores);
+  } catch (err) {
+    console.error('Erro em getAll:', err); 
+    res.status(500).json({ error: 'Erro ao buscar orientadores' });
+  }
+};
+
 exports.cadastrarOrientador = async (req, res) => {
   const { error } = orientadorSchema.validate(req.body);
   if (error) {
-    return res.status(400).json({ error: error.details[0].message });
+    return res.status(400).send(error.details[0].message); // ou renderizar um erro
   }
 
   try {
     const orientador = await service.cadastrarOrientador(req.body);
-    res.status(201).json(orientador);
+    res.redirect('/dashboard'); 
+
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('[ERRO orientadorController]:', err);
+    res.status(500).send('Erro ao cadastrar orientador');
   }
 };
+
 
 // Listar orientadores
 exports.listarOrientador = async (_req, res) => {

@@ -114,11 +114,11 @@ Content-Type: application/json
 }
 
 ### Busca um orientadores específico
-GET http://localhost:3000/api/orientador/7a1609fc-c5f6-4e6f-8c1d-c957d40df24f
+GET http://localhost:3000/api/orientador/06bacc16-d701-4cd7-99d7-272bcbe1c7c6
 Content-Type: application/json
 
 ### Edita um orientador específico
-PUT http://localhost:3000/api/orientador/7a1609fc-c5f6-4e6f-8c1d-c957d40df24f
+PUT http://localhost:3000/api/orientador/
 Content-Type: application/json
 
 {
@@ -132,7 +132,7 @@ Content-Type: application/json
 }
 
 ###Deleta um orientador específico
-DELETE http://localhost:3000/api/orientador/7a1609fc-c5f6-4e6f-8c1d-c957d40df24f
+DELETE http://localhost:3000/api/orientador/
 Content-Type: application/json
 
 

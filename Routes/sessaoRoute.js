@@ -3,7 +3,9 @@ const router = express.Router();
 
 const sessaoController = require('../controllers/sessaoController');
 
-// Use rotas relativas ao path definido no server.js (/api/aluno)
+
+router.get('/agendar/:id', sessaoController.renderizarPaginaAgendamento);
+
 router.get('/', sessaoController.listarSessao);
 router.post('/', sessaoController.cadastrarSessao);
 router.get('/:id', sessaoController.buscarSessao);

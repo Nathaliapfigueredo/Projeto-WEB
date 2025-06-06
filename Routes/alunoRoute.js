@@ -4,7 +4,9 @@ const router = express.Router();
 const alunoController = require('../controllers/alunoController');
 
 router.get('/form', alunoController.formAluno);
-router.get('/orientadores', alunoController.listaOrientadores);
+router.get('/listaOrientadores', alunoController.listaOrientadores);
+router.post('/selecionar-Orientador', alunoController.selecionarOrientador);
+
 router.get('/', alunoController.listarAluno);
 router.post('/', alunoController.cadastrarAluno);
 router.get('/:id', alunoController.buscarAluno);

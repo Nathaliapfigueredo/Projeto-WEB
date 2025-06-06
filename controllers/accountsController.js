@@ -1,12 +1,10 @@
 const accountsService = require('../services/accountsService');
 const { accountSchema, loginSchema } = require('../models/accountsModel');
 
-// Função para renderizar a view do formulário
 exports.formUser = (req, res) => {
   console.log("[AccountsController] - formUser");
   res.render("formUser");
 };
-
 
 exports.cadastrarAccount = async (req, res) => {
   console.log("Dados recebidos no body:", req.body);
@@ -22,8 +20,10 @@ exports.cadastrarAccount = async (req, res) => {
     if (req.body.user_type === 'aluno') {
       console.log("Conta de aluno criada. Redirecionando para o formulário de dados do aluno.");
       return res.redirect(`/api/aluno/form?id=${account.id}`);
+    } else if (req.body.user_type === 'orientador') {
+      console.log("Conta de orientador criada. Redirecionando para o formulário de dados do orientador.");
+      return res.redirect(`/api/orientador/form?id=${account.id}`);
     }
-
     res.status(201).json(account);
   } catch (err) {
     console.error("Erro ao criar conta:", err); 
@@ -40,7 +40,7 @@ exports.loginAccount = async (req, res) => {
   try {
     const user = await accountsService.loginAccount(req.body);
     res.status(200).json({ message: 'Login bem-sucedido', user });
-  } catch (err) {
+  } catch (err) {l
     res.status(401).json({ error: err.message });
   }
 };
