@@ -9,8 +9,8 @@
 
 1. [Introdução](#c1)  
 2. [Projeto Técnico da Aplicação Web](#c3)  
-4. [Desenvolvimento da Aplicação Web](#c4)  
-5. [Referências](#c5)  
+3. [Desenvolvimento da Aplicação Web](#c4)  
+4. [Referências](#c5)  
 
 <br>
 
@@ -121,7 +121,9 @@ _Campos:_
 
 Essa registra e controla os encontros entre alunos e orientadores.
 
-### 2.3. WebAPI e endpoints 
+## <a name="c2"></a>3. Desenvolvimento da Aplicação Web
+
+## 3.1 WebAPI e endpoints 
 Esta seção expõe quatro conjuntos de endpoints REST em /api/accounts, /api/aluno, /api/orientador e /api/sessao. Todos aceitam e devolvem JSON. As APIs foram projetadas para permitir a integração e o uso eficiente do sistema por meio de requisições padronizadas, facilitando operações como criação de contas, cadastro de alunos e orientadores, agendamento de sessões e consulta de dados.
 
 Todas as requisições são validadas utilizando os models definidos com Joi, garantindo a segurança e consistência das informações trocadas.
@@ -162,3 +164,29 @@ Exemplos de uso via curl:
 curl -X POST http://localhost:3000/api/accounts \
      -H "Content-Type: application/json" \
      -d '{"name":"Ana","email":"ana@exemplo.com"}'
+
+
+### 3.2 Interface e Navegação (Semana 07)
+Nesta semana, o foco esteve no desenvolvimento do front-end e na sua integração com o back-end. O primeiro passo foi definir as principais funcionalidades do MVP. Decidi priorizar a interface do aluno, contemplando recursos como a escolha do orientador, o agendamento de sessões e uma página dedicada à visualização das sessões já marcadas.
+
+Fluxo de cadastro:
+<p align="center">
+<a href= ""><img src="../assets/fluxoCadastro.png" alt="Modelo Lógico"></a>
+</p>
+
+Fluxo de agendamento:
+
+<p align="center">
+<a href= ""><img src="../assets/fluxoAgendamento.png" alt="Modelo Lógico"></a>
+</p>
+
+Posteriormente, foi desenvolvido o cadastro do orientador e uma página de direcionamento:
+<p align="center">
+<a href= ""><img src="../assets/fluxoOrientador.png" alt="Modelo Lógico"></a>
+</p>
+
+Próximos refinamentos:
+- Dashboard do orientador para acessar os agendamentos feitos
+- Avisos de erro quando a senha não for válida
+- Deixar fixo na nav bar o acesso a página de agendamento
+- Adiciona a logo 
