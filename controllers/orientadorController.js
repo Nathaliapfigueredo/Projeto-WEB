@@ -1,6 +1,6 @@
 const service = require('../services/orientadorService');
 const accountsService = require('../services/accountsService');
-orientadorRepository = require('../repositories/orientadorRepository');
+const orientadorRepository = require('../repositories/orientadorRepository');
 
 const { orientadorSchema } = require('../models/orientadorModel');
 
@@ -38,18 +38,41 @@ exports.cadastrarOrientador = async (req, res) => {
   }
 };
 
-
-// Listar orientadores
 exports.listarOrientador = async (_req, res) => {
   try {
-    const orientadores = await service.listarOrientadores();
+    const orientadores = await service.
+    listarOrientadores();
     res.status(200).json(orientadores);
   } catch (err) {
     res.status(500).json({ error: err.message });
+  
+};
+}
+
+exports.renderizarListaOrientadores = async (req, res) => {
+  try {
+    const orientadores = await service.listarOrientadores();
+    let aluno = { id: '' };
+    if (req.user && req.user.id) {
+      aluno.id = req.user.id;
+    } else if (req.session && req.session.aluno && req.session.aluno.id) {
+      aluno.id = req.session.aluno.id;
+    } else if (req.query.id_aluno) {
+      aluno.id = req.query.id_aluno;
+    }
+
+    // Busque as sessões agendadas do aluno
+    let sessoes = [];
+    if (aluno.id) {
+      sessoes = await require('../services/sessaoService').listarSessoesPorAluno(aluno.id);
+    }
+
+    res.render('listaOrientadores', { orientadores, aluno, sessoes });
+  } catch (err) {
+    res.status(500).send('Erro ao carregar lista de orientadores');
   }
 };
 
-// Buscar orientador por ID
 exports.buscarOrientador = async (req, res) => {
   try {
     const orientador = await service.buscarOrientador(req.params.id);
@@ -59,7 +82,6 @@ exports.buscarOrientador = async (req, res) => {
   }
 };
 
-// Editar orientador
 exports.editarOrientador = async (req, res) => {
   const { error } = orientadorSchema.validate(req.body);
   if (error) {
@@ -74,7 +96,6 @@ exports.editarOrientador = async (req, res) => {
   }
 };
 
-// Excluir orientador
 exports.excluirOrientador = async (req, res) => {
   try {
     await service.excluirOrientador(req.params.id);

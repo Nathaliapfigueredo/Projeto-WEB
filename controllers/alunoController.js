@@ -13,12 +13,15 @@ exports.formAluno = (req, res) => {
 
 exports.listaOrientadores = async (req, res) => {
   try {
-    const orientadores = await alunoRepository.findAll(); // ou orientadorRepository.findAll()
+    const orientadores = await alunoRepository.findAll(); 
     res.render('listaOrientadores', { orientadores });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
+
+
+
 
 exports.selecionarOrientador = async (req, res) => {
   const { id_aluno, id_orientador } = req.body;
@@ -37,12 +40,26 @@ exports.cadastrarAluno = async (req, res) => {
 
   try {
     const aluno = await alunoService.cadastrarAluno(req.body);
-    res.redirect(`aluno/listaOrientadores?idAluno=${aluno.id}`);
+    req.session.aluno = {
+      id: aluno.id,
+      nome: aluno.nome 
+    };
+
+    // 🔧 Buscando orientadores antes de usar a variável
+    const orientadores = await alunoRepository.findAll();
+
+    res.render('listaOrientadores', {
+      orientadores,
+      aluno: req.session.aluno
+    });
 
   } catch (err) {
+    console.error("[Erro ao cadastrar aluno]", err);
     res.status(500).send('Erro ao cadastrar aluno');
   }
 };
+
+
 
 exports.listarAluno = async (req, res) => {
   try {

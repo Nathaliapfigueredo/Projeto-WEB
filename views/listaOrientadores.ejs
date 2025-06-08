@@ -49,6 +49,7 @@
 </head>
 
 <body>
+  <% if (typeof aluno === 'undefined') { aluno = { id: '' }; } %>
   <%- include('partials/header') %>
 
   <div class="container my-5">
@@ -63,7 +64,6 @@
               <h2><%= orientador.nome %></h2>
               <p><strong>Email:</strong> <%= orientador.email %></p>
               <p><strong>Especialidade:</strong> <%= orientador.expertise %></p>
-
               <button class="btn select-button mt-2" 
                       type="button" 
                       data-bs-toggle="collapse" 
@@ -79,15 +79,45 @@
                   <p><strong>Biografia:</strong> <%= orientador.bio || 'Sem informações adicionais.' %></p>
                 </div>
               </div>
-              <div>
-      
-                <button class="btn select-button mt-2" 
-                  onclick="window.location.href='/agendar/<%= orientador.id %>'">
-                  Agendar Orientação
-                </button>
 
+              <!-- Botão para abrir o formulário de agendamento -->
+              <button class="btn select-button mt-2"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#agendar<%= index %>"
+                      aria-expanded="false"
+                      aria-controls="agendar<%= index %>">
+                Agendar Orientação
+              </button>
+
+              <!-- Formulário de agendamento em collapse -->
+              <div class="collapse mt-3" id="agendar<%= index %>">
+                <div class="card card-body">
+                  <form action="/api/sessao" method="POST">
+                    <input type="hidden" name="id_orientador" value="<%= orientador.id %>">
+                    <input type="hidden" name="id_aluno" value="<%= aluno.id %>">
+                    <div class="mb-2">
+                      <label class="form-label">Data</label>
+                      <input type="date" class="form-control" name="agendamento_data" required>
+                    </div>
+                    <div class="mb-2">
+                      <label class="form-label">Hora</label>
+                      <input type="time" class="form-control" name="agendamento_hora" required>
+                    </div>
+                    <div class="mb-2">
+                      <label class="form-label">Tópico</label>
+                      <input type="text" class="form-control" name="topico" required>
+                    </div>
+                    <div class="mb-2">
+                      <label class="form-label">Link da Reunião</label>
+                      <input type="url" class="form-control" name="external_link">
+                    </div>
+                    <input type="hidden" name="status" value="agendada">
+                    <button type="submit" class="btn btn-primary btn-sm">Confirmar Agendamento</button>
+                  </form>
+                </div>
               </div>
-
+  
             </div>
           </div>
         <% }) %>

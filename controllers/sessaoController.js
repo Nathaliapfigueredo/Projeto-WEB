@@ -4,29 +4,6 @@ const { sessaoSchema } = require('../models/sessaoModel');
  
 const orientadorRepository = require('../repositories/orientadorRepository');
 
-exports.renderizarPaginaAgendamento = async (req, res) => {
-  const id_orientador = req.params.id;
-  const id_aluno = req.query.id_aluno ;
-  console.log("[renderizarPaginaAgendamento] ID do orientador:", id_orientador);
-
-
-  try {
-    const orientador = await orientadorRepository.findById(id_orientador);
-
-    if (!orientador) {
-      return res.status(404).send('Orientador não encontrado');
-    }
-    console.log("Orientador encontrado:", orientador);
-    res.render('agendamento', {
-      orientador,
-      aluno: { id: id_aluno }
-    });
-  } catch (err) {
-    res.status(500).send('Erro ao carregar a página de agendamento');
-  }
-};
-
-
 
 exports.cadastrarSessao = async (req, res) => {
   const { error } = sessaoSchema.validate(req.body);
@@ -36,24 +13,28 @@ exports.cadastrarSessao = async (req, res) => {
 
   try {
     await service.cadastrarSessao(req.body);
-    res.redirect('/sessao/sucesso'); // ou outra página de confirmação
+    res.redirect('/listaSessoes'); 
   } catch (err) {
     res.status(500).send(`Erro ao salvar sessão: ${err.message}`);
   }
 };
 
-
-// Listar sessões
-exports.listarSessao = async (_req, res) => {
+exports.listarSessoes = async (req, res) => {
   try {
-    const sessoes = await service.listarSessoes();
-    res.status(200).json(sessoes);
+    const sessoes = await sessaoService.listarSessoes();
+    const sessoesFormatadas = sessoes.map(sessao => ({
+      data: sessao.agendamento_data,
+      horario: sessao.agendamento_hora,
+      orientador: sessao.nome_orientador,
+      status: sessao.status
+    }));
+
+    res.render('listaSessoes', { sessoes: sessoesFormatadas });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).send('Erro ao buscar sessões');
   }
 };
 
-// Buscar sessão por ID
 exports.buscarSessao = async (req, res) => {
   try {
     const sessao = await service.buscarSessao(req.params.id);
@@ -63,7 +44,6 @@ exports.buscarSessao = async (req, res) => {
   }
 };
 
-// Editar sessão
 exports.editarSessao = async (req, res) => {
   const { error } = sessaoSchema.validate(req.body);
   if (error) {
@@ -78,7 +58,6 @@ exports.editarSessao = async (req, res) => {
   }
 };
 
-// Excluir sessão
 exports.excluirSessao = async (req, res) => {
   try {
     await service.excluirSessao(req.params.id);

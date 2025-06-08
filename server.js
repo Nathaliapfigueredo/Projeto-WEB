@@ -23,9 +23,15 @@ const path = require('path');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); 
 
-app.get('/agendar/:id', sessaoController.renderizarPaginaAgendamento);
+const session = require('express-session');
 
-// Usar as rotas com prefixos diferentes
+app.use(session({
+  secret: 'segredo-super-seguro',     // use algo mais seguro em produção
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }           // mantenha false enquanto estiver usando HTTP
+}));
+
 
 app.use('/api/accounts', accountsRoutes);  
 app.use('/api/aluno', alunoRoutes);        
@@ -33,12 +39,9 @@ app.use('/api/orientador', orientadorRoutes);
 app.use('/api/sessao', sessaoRoutes);
 
 
-
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
-
-
 
 
 app.get('/', async (req, res) => {
@@ -50,3 +53,8 @@ app.get('/', async (req, res) => {
     res.status(500).send('Erro ao conectar com o banco.');
   }
 });
+
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard');
+});
+
