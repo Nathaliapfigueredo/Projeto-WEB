@@ -1,4 +1,4 @@
-const service = require('../services/sessaoService');
+const sessaoService = require('../services/sessaoService');
 const { sessaoSchema } = require('../models/sessaoModel');
 
  
@@ -12,7 +12,7 @@ exports.cadastrarSessao = async (req, res) => {
   }
 
   try {
-    await service.cadastrarSessao(req.body);
+    await sessaoService.cadastrarSessao(req.body);
     res.redirect('/listaSessoes'); 
   } catch (err) {
     res.status(500).send(`Erro ao salvar sessão: ${err.message}`);
@@ -22,16 +22,19 @@ exports.cadastrarSessao = async (req, res) => {
 exports.listarSessoes = async (req, res) => {
   try {
     const sessoes = await sessaoService.listarSessoes();
+    console.log('Sessoes encontradas:', sessoes);  
+
     const sessoesFormatadas = sessoes.map(sessao => ({
       data: sessao.agendamento_data,
       horario: sessao.agendamento_hora,
-      orientador: sessao.nome_orientador,
-      status: sessao.status
+      orientador: sessao.orientador,
+      status: sessao.status,
+      external_link: sessao.external_link || null
     }));
 
     res.render('listaSessoes', { sessoes: sessoesFormatadas });
   } catch (err) {
-    res.status(500).send('Erro ao buscar sessões');
+    res.status(500).send(`Erro ao buscar sessões: ${err.message}`);
   }
 };
 

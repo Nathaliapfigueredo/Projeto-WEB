@@ -26,10 +26,10 @@ app.set('views', path.join(__dirname, 'views'));
 const session = require('express-session');
 
 app.use(session({
-  secret: 'segredo-super-seguro',     // use algo mais seguro em produção
+  secret: 'segredo-super-seguro',     
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }           // mantenha false enquanto estiver usando HTTP
+  cookie: { secure: false }          
 }));
 
 
@@ -37,6 +37,14 @@ app.use('/api/accounts', accountsRoutes);
 app.use('/api/aluno', alunoRoutes);        
 app.use('/api/orientador', orientadorRoutes);
 app.use('/api/sessao', sessaoRoutes);
+
+app.get('/listaSessoes', sessaoController.listarSessoes);
+
+
+// Rota de teste para verificar se o servidor está funcionando
+//app.get('/listaSessoes', (req, res) => {
+//  res.send('Rota /listaSessoes funcionando!');
+//});
 
 
 app.listen(port, () => {
@@ -54,7 +62,6 @@ app.get('/', async (req, res) => {
   }
 });
 
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard');
-});
+
+
 
