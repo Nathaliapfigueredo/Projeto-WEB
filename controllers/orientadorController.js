@@ -1,6 +1,8 @@
+const sessaoService = require('../services/sessaoService');
 const service = require('../services/orientadorService');
 const accountsService = require('../services/accountsService');
 const orientadorRepository = require('../repositories/orientadorRepository');
+
 
 const { orientadorSchema } = require('../models/orientadorModel');
 
@@ -70,6 +72,25 @@ exports.renderizarListaOrientadores = async (req, res) => {
     res.render('listaOrientadores', { orientadores, aluno, sessoes });
   } catch (err) {
     res.status(500).send('Erro ao carregar lista de orientadores');
+  }
+};
+
+exports.mostrarDashboard = async (req, res) => {
+  try {
+    const sessoes = await sessaoService.listarSessoes();
+
+    const sessoesFormatadas = sessoes.map(sessao => ({
+      data: sessao.agendamento_data,
+      horario: sessao.agendamento_hora,
+      aluno: sessao.nome_aluno || 'Aluno não identificado',
+      topico: sessao.topico,
+      status: sessao.status
+    }));
+
+    res.render('dashboard', { sessoes: sessoesFormatadas });
+  } catch (error) {
+    console.error('Erro ao carregar o dashboard:', error);
+    res.status(500).send('Erro ao carregar o dashboard');
   }
 };
 

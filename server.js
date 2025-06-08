@@ -9,6 +9,8 @@ const alunoRoutes = require('./Routes/alunoRoute.js');
 const orientadorRoutes = require('./Routes/orientadorRoute.js');
 const sessaoRoutes = require('./Routes/sessaoRoute.js');
 const sessaoController = require('./controllers/sessaoController');
+const orientadorController = require('./controllers/orientadorController');
+
 
 
 
@@ -39,7 +41,7 @@ app.use('/api/orientador', orientadorRoutes);
 app.use('/api/sessao', sessaoRoutes);
 
 app.get('/listaSessoes', sessaoController.listarSessoes);
-
+app.get('/dashboard', orientadorController.mostrarDashboard);
 
 // Rota de teste para verificar se o servidor está funcionando
 //app.get('/listaSessoes', (req, res) => {
