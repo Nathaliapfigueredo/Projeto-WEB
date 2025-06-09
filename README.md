@@ -63,10 +63,15 @@ module.exports = pool;
 - Executando a aplicação
 `npm start`
 
+- Colocar no navegador http://localhost:3000/api/accounts/form
+
 
 
 
 ## 🗃 Histórico de versões
+* 0.5.0 - 8/06/2025
+    * Criação do Front end das principais funcionalidades
+    * Integração com o back end
 * 0.4.0 - 25/05-2025
     * Criação das APIs
     * Implementação da estrutura MVC
