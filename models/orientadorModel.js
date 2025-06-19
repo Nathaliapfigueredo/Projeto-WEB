@@ -1,6 +1,5 @@
 const Joi = require('joi');
 
-// Schema para cadastro e edição
 const orientadorSchema = Joi.object({
   expertise: Joi.string().required(),
   disponibilidade_data: Joi.string(),

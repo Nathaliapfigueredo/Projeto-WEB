@@ -43,11 +43,6 @@ app.use('/api/sessao', sessaoRoutes);
 app.get('/listaSessoes', sessaoController.listarSessoes);
 app.get('/dashboard', orientadorController.mostrarDashboard);
 
-// Rota de teste para verificar se o servidor está funcionando
-//app.get('/listaSessoes', (req, res) => {
-//  res.send('Rota /listaSessoes funcionando!');
-//});
-
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);

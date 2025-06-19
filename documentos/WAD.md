@@ -185,8 +185,63 @@ Posteriormente, foi desenvolvido o cadastro do orientador e uma página de direc
 <a href= ""><img src="../assets/fluxoOrientador.png" alt="Modelo Lógico"></a>
 </p>
 
-Próximos refinamentos:
+
+## <a name="c1"></a>4. Entenda as decisões técnicas
+O sistema adota uma arquitetura em camadas (MVC com uma Service e Repository Layer adicional) e utiliza o banco de dados PostgreSQL para a persistência de dados.
+
+O banco de dados utilizado é o PostgreSQL, escolhido pelo seu desempenho. A conexão com o banco é realizada por meio da biblioteca pg, utilizando o recurso de pool de conexões (pg.Pool), o que garante melhor performance em ambientes com múltiplas requisições simultâneas. As configurações de conexão são gerenciadas por meio de variáveis de ambiente, armazenadas no arquivo .env, o que proporciona maior segurança. 
+A estrutura de tabelas foi cuidadosamente planejada para atender as necessidades do sistema, com tabelas separadas para contas de usuário (accounts), alunos, orientadores e sessões agendadas.
+
+
+
+O projeto segue o padrão arquitetural **MVC (Model-View-Controller)**, com uma camada de servicee repository para reforçar a separação de responsabilidades:
+- Controller: Responsável por receber as requisições HTTP, processar os dados de entrada e direcionar as chamadas para os serviços correspondentes.
+- Service: Contém a lógica de negócio e as validações adicionais, servindo como intermediário entre o Controller e o Repository.
+- Repository: Realiza a interação direta com o banco de dados, executando operações de leitura e escrita.
+- Model: Faz a validação dos dados recebidos, utilizando principalmente a biblioteca Joi para garantir que os dados estejam no formato esperado.
+- View: Responsável pela renderização das páginas web, utilizando o motor de templates EJS. Foi desenvolvida uma interface utilizando EJS com Bootstrap. Essa interface permite o envio de dados diretamente para a API por meio de um HTML, proporcionando uma experiência de usuário simples e direta.
+
+Essa estrutura facilita a manutenção, a realização de testes unitários e a escalabilidade futura do sistema.
+
+
+### Tecnologias Utilizadas
+As tecnologias foram escolhidas com foco na simplicidade, escalabilidade e segurança básica. Além disso, são ferramentas amplamente utilizadas no mercado, o que facilita a integração de novos desenvolvedores e futuras expansões.
+
+
+PostgreSQL: Um banco de dados relacional seguro e eficiente na execução de consultas e na gestão de relacionamentos entre tabelas.
+
+
+Joi: Uma biblioteca de validação de dados para Node.js, que permite definir esquemas de validação claros e reutilizáveis. Por exemplo, antes da criação de uma conta, o backend valida se o nome, email e senha seguem o formato correto, o que reduz significativamente a chance de erros e inconsistências.
+
+
+EJS (Embedded JavaScript Templates): Utilizado para a renderização de páginas dinâmicas no servidor (Server Side Rendering - SSR).
+
+
+Bootstrap: Adotado para facilitar a criação de um design responsivo e profissional.
+
+
+express-session: Responsável pelo gerenciamento de sessões, permitindo o armazenamento de informações sobre usuários logados e possibilitando, no futuro, a implementação de controle de acesso.
+
+
+### Boas Práticas Adotadas
+Durante o desenvolvimento, diversas boas práticas foram seguidas para garantir a qualidade do código e a eficiência do sistema. Tivemos a separação clara de responsabilidades por camadas, validação de entrada de dados utilizando Joi e tratamento adequado de erros.
+
+O sistema foi projetado para ser facilmente integrado com futuros frontends (como aplicativos mobile) graças à sua estrutura de rotas RESTful. O código é modular e organizado, o que facilita a inclusão de novos módulos, como feedback de usuários, relatórios gerenciais, entre outros.
+Por fim, o projeto foi desenvolvido com foco em clareza, facilidade de manutenção, boas práticas REST, segurança básica e modularidade. Sua base sólida permite ampliações futuras, incluindo a implementação de autenticação avançada (como JWT), suporte a novos tipos de usuários e geração de relatórios gerenciais.
+
+ 
+## <a name="c1"></a>5. Aprendizados e Desafios
+Os principais aprendizados durante o desenvolvimento deste projeto envolveram tanto aspectos técnicos quanto conceituais relacionados à construção de sistemas web. Foi possível aprofundar o conhecimento em arquitetura de software, especialmente no padrão MVC  para separação de responsabilidades. 
+
+A integração com o banco de dados PostgreSQL  foi o maior desafio que permitiu consolidar habilidades em modelagem relacional, criação de consultas SQL e rotas. O problema enfrentado com maior frequência era de não encontrar o id do paciente por ele não estar nas rotas ou não estar sendo declarado no controle. Para resolução tive um grande aprendizado com o tratamento de erros e console.log para debug e encontrar o verdadeiro problema.
+
+De forma geral, o projeto proporcionou uma visão mais completa e prática sobre o ciclo de desenvolvimento de uma aplicação web moderna, desde o planejamento até a entrega de uma solução funcional e segura.
+
+
+
+Futuras implementações e Upgrades:
 - Dashboard do orientador para acessar os agendamentos feitos
 - Avisos de erro quando a senha não for válida
-- Deixar fixo na nav bar o acesso a página de agendamento
-- Adiciona a logo 
+- Deixar fixo na nav bar o acesso a página de agendamento para uma melhor experiência do usuário
+
+
