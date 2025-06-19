@@ -45,7 +45,6 @@ exports.cadastrarAluno = async (req, res) => {
       nome: aluno.nome 
     };
 
-    // 🔧 Buscando orientadores antes de usar a variável
     const orientadores = await alunoRepository.findAll();
 
     res.render('listaOrientadores', {

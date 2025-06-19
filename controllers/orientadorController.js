@@ -27,7 +27,7 @@ exports.getAll = async (req, res) => {
 exports.cadastrarOrientador = async (req, res) => {
   const { error } = orientadorSchema.validate(req.body);
   if (error) {
-    return res.status(400).send(error.details[0].message); // ou renderizar um erro
+    return res.status(400).send(error.details[0].message); 
   }
 
   try {
@@ -63,7 +63,6 @@ exports.renderizarListaOrientadores = async (req, res) => {
       aluno.id = req.query.id_aluno;
     }
 
-    // Busque as sessões agendadas do aluno
     let sessoes = [];
     if (aluno.id) {
       sessoes = await require('../services/sessaoService').listarSessoesPorAluno(aluno.id);

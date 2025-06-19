@@ -1,6 +1,5 @@
 const Joi = require('joi'); 
 
-// Schema para cadastro e edição
 const sessaoSchema = Joi.object({
   agendamento_data: Joi.string().required(), 
   agendamento_hora: Joi.string().required(),

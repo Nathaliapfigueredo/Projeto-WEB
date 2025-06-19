@@ -1,4 +1,3 @@
-// repositories/accountsRepository.js
 const pool = require('../config/db');
 
 exports.createAccount = (nome, email, senha, user_type) => {

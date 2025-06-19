@@ -1,4 +1,3 @@
-// services/accountsService.js
 const accountsRepository = require('../repositories/accountsRepository');
 
 exports.cadastrarAccount = async ({ nome, email, senha,user_type }) => {
