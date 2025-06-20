@@ -15,6 +15,8 @@
 
 Plataforma que conecta mentores na ciência — jovens cientístas,especialistas ou profissionais — a jovens que desejam transformar suas ideias em pesquisas e artigos. Através de funcionalidades como criação de perfis, categorização por áreas temáticas e agendamento de sessões, o sistema viabiliza um programa estruturado de orientação científica, acessível, organizado e colaborativo. Mais do que uma ferramenta, trata-se de um passo essencial para tornar a ciência um espaço de pertencimento e realização para todos.
 
+####  Vídeo de demonstração e explicação do frontend e backend: https://www.youtube.com/watch?v=31FblITdxrk
+
 ## 📁 Estrutura de pastas
 
 Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
