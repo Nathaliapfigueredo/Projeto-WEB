@@ -71,9 +71,11 @@ module.exports = pool;
 
 
 ## 🗃 Histórico de versões
+* 0.6.0 - 19/06/2025
+    * Documentação do desenvolvimento
 * 0.5.0 - 8/06/2025
-    * Criação do Front end das principais funcionalidades
-    * Integração com o back end
+    * Criação do Frontend das principais funcionalidades
+    * Integração com o backend
 * 0.4.0 - 25/05-2025
     * Criação das APIs
     * Implementação da estrutura MVC
